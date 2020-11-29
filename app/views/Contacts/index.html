@@ -1,0 +1,77 @@
+#{extends 'main.html' /}
+
+<p >
+    <a href="/contacts/new">Add New Contact</a>    
+ </p>
+
+<h1>Contact List</h1>
+
+#{ifnot contacts}
+    <p>
+        No contacts Found
+    </p>
+#{/ifnot}
+#{else}
+   <table>
+       <thead>
+           <tr>
+               <th>Name</th>
+               <th>Birthdate</th>
+               <th>Email</th>
+               <th>Reminder (In Hours)</th>
+               <th>Edit</th>
+               <th>Delete</th>
+           </tr>
+       </thead>
+       <tbody>
+           #{list contacts, as:'contact'}
+               <tr>
+                   <td>${contact.name}</td>
+                   <td>${contact.birthdate.format('yyyy-MM-dd')}</td>
+                   <td>${contact.email}</td>
+                   <td>${contact.reminder}</td>
+                   <td>
+                        #{a @create(contact.id)}Edit#{/a}
+                   </td>
+                    <td>
+                        #{a @delete(contact.id)}Delete#{/a}
+                   </td>
+                   
+                </tr>
+           #{/list}
+       </tbody>
+   </table> 
+#{/else}
+
+
+#{ifnot rems}
+    <p>
+        No rems Found
+    </p>
+#{/ifnot}
+#{else}
+   <table>
+       <thead>
+           <tr>
+               <th>Name</th>
+               <th>Birthdate</th>
+               <th>Email</th>
+               <th>Reminder (In Hours)</th>
+               <th>reminder date time</th>
+           </tr>
+       </thead>
+       <tbody>
+           #{list rems, as:'contact'}
+               <tr>
+                   <td>${contact.contact.name}</td>
+                   <td>${contact.contact.birthdate.format('yyyy-MM-dd')}</td>
+                   <td>${contact.contact.email}</td>
+                   <td>${contact.contact.reminder}</td>
+                   <td>${contact.reminderDate}</td>
+                   
+                   
+                </tr>
+           #{/list}
+       </tbody>
+   </table> 
+#{/else}

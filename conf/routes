@@ -1,0 +1,22 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET     /                                       Application.index
+GET     /register                               Application.register
+POST    /register                               Application.saveUser
+POST    /login                                  Application.login
+GET     /logout                                 Application.logout
+
+GET     /contacts                               Contacts.index
+POST    /contacts                               Contacts.save
+GET     /contacts/{id}                          Contacts.create
+GET     /contacts/new                           Contacts.create
+DELETE  /contacts/{id}                          Contacts.delete
+
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

@@ -1,0 +1,53 @@
+#{extends 'main.html' /}
+#{set title:'Create New Contact' /}
+#{set 'moreScripts'}
+    <script src="@{'/public/javascripts/jquery-ui-1.7.2.custom.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+#{/set}
+#{set 'moreStyles'}
+    <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/ui-lightness/jquery-ui-1.7.2.custom.css'}" />
+#{/set}
+
+
+
+<h1>create contact</h1>
+
+#{form @save()}
+    <input type="hidden" name="contact.id" value="${contact?.id}">
+        
+    <p class="field">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="contact.name" value="${contact?.name}">
+        <span class="error">${errors.forKey('contact.name')}</span>
+    </p>
+
+
+    <p class="field">
+        <label for="birthdate">Birth date:</label>
+        <input type="text" id="birthdate" name="contact.birthdate" value="${contact?.birthdate?.format('yyyy-MM-dd')}">
+        <span class="error">${errors.forKey('contact.birthdate')}</span>
+    </p>
+
+    <p class="field">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="contact.email" value="${contact?.email}">
+        <span class="error">${errors.forKey('contact.email')}</span>
+    </p>
+    
+    <p class="field">
+        <label for="reminder">Set Reminder (In Hours):</label>
+        <input type="text" id="email" name="contact.reminder" value="${contact?.reminder}">
+        <span class="error">${errors.forKey('contact.reminder')}</span>
+    </p>
+
+    <p class="buttons">
+     	<a href="@{index()}">Cancel</a> or <input type="submit" value="Save this contact" id="saveContact">
+    </p>
+    
+    <script type="text/javascript" charset="${_response_encoding}">
+        $("#birthdate").datepicker({dateFormat:'yy-mm-dd', showAnim:'fadeIn'})
+	</script>
+    
+   
+    
+#{/form}
+
